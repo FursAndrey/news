@@ -74,9 +74,9 @@ class NewsController extends Controller
 	public function showOneNews($slug)
 	{
 		$post = Posts::where('slug', '=', $slug)->get()[0];
-		$comments = Comments::where('news_id', '=', $post->id)->get();
+		$comments = Comments::orderBy('created_at', 'DESC')->where('news_id', '=', $post->id)->get();
 		
-	//	$post->body = htmlentities($post->body);
+//		echo $post->body;
 
 		return view(
 			'oneNews',
